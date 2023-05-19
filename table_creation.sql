@@ -1,10 +1,12 @@
 -- reset all tables
 -- cascade used to drop dependent objects (FKs)
+-- Abhinav Uppala & Raza Hlaing
+
 drop table if exists Customers cascade;
 drop table if exists EmployeeShifts cascade;
 drop table if exists GroceryInventory cascade;
-drop table if exists FoodCourts cascade;
-drop table if exists GroceryStores cascade;
+drop table if exists FoodCourtItems cascade;
+drop table if exists StoreLocations cascade;
 drop table if exists FoodCourtOrders cascade;
 drop table if exists GroceryOrders cascade;
 drop table if exists Employees cascade;
@@ -16,7 +18,7 @@ create table Customers
     CustomerFName text NOT NULL,
     CustomerLName text NOT NULL,
     CustomerEmail text NOT NULL,
-    CustomerPhoneNo int NOT NULL
+    CustomerPhoneNo bigint NOT NULL
 );
 
 -- store employee information
@@ -26,7 +28,7 @@ create table Employees
     EmployeeFName text NOT NULL,
     EmployeeLName text NOT NULL,
     EmployeeEmail text NOT NULL,
-    EmployeePhoneNo int NOT NULL,
+    EmployeePhoneNo bigint NOT NULL,
     EmployeeDOB date NOT NULL,
     EmployeeWageType text NOT NULL, -- either "Salary" or "Hourly"
     EmployeeWage decimal(12, 2) NOT NULL
@@ -37,10 +39,10 @@ create table EmployeeShifts
 (
     ShiftTimePeriod int NOT NULL, -- date & time period of shift
     ShiftDate date NOT NULL,
-    ShiftGroceryStoreID int NOT NULL, -- at least 1 of these 2 must be not-null
-    ShiftFoodCourtID int NOT NULL,
+    ShiftStoreID int NOT NULL,
     ShiftEmployeeID int NOT NULL,
-    FOREIGN KEY (ShiftEmployeeID) REFERENCES Employees(EmployeeID),
+    PRIMARY KEY (ShiftTimePeriod, ShiftDate, ShiftStoreID), -- composite PK
+    FOREIGN KEY (ShiftEmployeeID) REFERENCES Employees(EmployeeID)
     -- figure out how to add multiple FKs or just leave it as is
 );
 
@@ -56,7 +58,7 @@ create table GroceryInventory
 );
 
 -- store food court product information
-CREATE TABLE FoodCourts (
+CREATE TABLE FoodCourtItems (
     FoodCourtItemID int PRIMARY KEY,
     FoodCourtItemName text UNIQUE NOT NULL,
     FoodCourtItemPrice decimal(8,2) NOT NULL,
@@ -66,13 +68,14 @@ CREATE TABLE FoodCourts (
 );
 
 -- manage information about grocery store locations
-CREATE TABLE GroceryStores (
-    GroceryStoreID int PRIMARY KEY,
-    GroceryStoreAddress text NOT NULL,
-    GroceryStoreManagerID int NOT NULL,
-    GroceryStorePhone int NOT NULL,
-    GroceryStoreHours text NOT NULL,
-    FOREIGN KEY (GroceryStoreManagerID) REFERENCES employees(EmployeeID)
+CREATE TABLE StoreLocations (
+    StoreID int PRIMARY KEY,
+    StoreAddress text NOT NULL,
+    StoreManagerID int NOT NULL,
+    StorePhone bigint NOT NULL,
+    StoreHours text NOT NULL,
+    StoreType text NOT NULL, -- Food court, grocery store, etc.
+    FOREIGN KEY (StoreManagerID) REFERENCES employees(EmployeeID)
 );
 
 -- manage grocery store orders
@@ -91,7 +94,6 @@ CREATE TABLE GroceryOrders (
 -- manage food court orders
 CREATE TABLE FoodCourtOrders (
     FOrderID int PRIMARY KEY,
-    FOrderItemID int NOT NULL,
     FOrderDesc text,
     FOrderDate DATE NOT NULL,
     FOrderTime TIME NOT NULL,
