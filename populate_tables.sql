@@ -21,9 +21,9 @@ insert into Customers values
 
 insert into Employees values
 (1001, 'David', 'Smith', 'dsmith333@gmail.com', 9165743451, '01/28/1985', 'Hourly', 22.25),
-(1002, 'Jane', 'Doe', 'joe22@gmail.com', 1234567891, '03/03/1990', 'Salary', 95000.00),
+(1002, 'Jane', 'Doe', 'joe22@gmail.com', 1234567891, '03/03/1990', 'Salary', 50000.00),
 (1003, 'Abhinav', 'Uppala', 'abhinav.uppala@gmail.com', 9168367880, '12/13/2005', 'Hourly', 20.75),
-(1004, 'Example', 'Employee', 'eemployee@gmail.com', 9163358827, '01/01/1980', 'Salary', 155000.00),
+(1004, 'Example', 'Employee', 'eemployee@gmail.com', 9163358827, '01/01/1980', 'Salary', 65000.00),
 (1005, 'Bruce', 'Wayne', 'batman@batmail.com', 5556839823, '10/30/1995', 'Salary', 9999999.99),
 (1006, 'Random', 'Person', 'genericemail@gmail.com', 9161230000, '01/01/2000', 'Hourly', 15.00);
 
