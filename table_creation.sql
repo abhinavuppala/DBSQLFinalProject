@@ -81,11 +81,10 @@ CREATE TABLE StoreLocations (
 -- manage grocery store orders
 CREATE TABLE GroceryOrders (
     GOrderID int PRIMARY KEY,
-    GOrderItemID int NOT NULL,
     GOrderDate date NOT NULL,
     GOrderTime time NOT NULL,
     GOrderQuantity int NOT NULL,
-    GOrderDesc text,
+    GOrderDesc text NOT NULL,
     GOrderPrice decimal(8,2) NOT NULL,
     GOrderCustomerID int NOT NULL,
     FOREIGN KEY (GOrderCustomerID) REFERENCES customers(CustomerID)
@@ -94,7 +93,7 @@ CREATE TABLE GroceryOrders (
 -- manage food court orders
 CREATE TABLE FoodCourtOrders (
     FOrderID int PRIMARY KEY,
-    FOrderDesc text,
+    FOrderDesc text NOT NULL,
     FOrderDate DATE NOT NULL,
     FOrderTime TIME NOT NULL,
     FOrderQuantity int NOT NULL,

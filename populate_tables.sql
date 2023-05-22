@@ -7,6 +7,7 @@ ID Key:
 600X - Grocery Orders
 700X - Food Court Orders
 800X - FoodCourtItems
+Can be changed in the future, but it's easier to see this way
 */
 
 -- Adding sample values to the created tables
@@ -22,7 +23,7 @@ insert into Employees values
 (1001, 'David', 'Smith', 'dsmith333@gmail.com', 9165743451, '01/28/1985', 'Hourly', 22.25),
 (1002, 'Jane', 'Doe', 'joe22@gmail.com', 1234567891, '03/03/1990', 'Salary', 95000.00),
 (1003, 'Abhinav', 'Uppala', 'abhinav.uppala@gmail.com', 9168367880, '12/13/2005', 'Hourly', 20.75),
-(1004, 'Keith', 'Campbell', 'kcampbell@eduhsd.k12.ca.us', 9163358827, '01/01/1980', 'Salary', 155000.00),
+(1004, 'Example', 'Employee', 'eemployee@gmail.com', 9163358827, '01/01/1980', 'Salary', 155000.00),
 (1005, 'Bruce', 'Wayne', 'batman@batmail.com', 5556839823, '10/30/1995', 'Salary', 9999999.99),
 (1006, 'Random', 'Person', 'genericemail@gmail.com', 9161230000, '01/01/2000', 'Hourly', 15.00);
 
@@ -45,11 +46,11 @@ insert into GroceryInventory values
 (5005, 'White Bread', '1 loaf white bread, sliced', 2.79, 1023, 0);
 
 insert into GroceryOrders values
-(6001, 5001, '5/19/2023', '13:30:23', 5, '5 bananas for John Doe', 8.06, 2001),
-(6002, 5005, '1/12/2022', '05:12:01', 35, NULL, 75.33, 2003),
-(6003, 5003, '1/12/2022', '05:13:54', 19, NULL, 122.19, 2003),
-(6004, 5004, '5/17/2023', '03:16:03', 2, NULL, 3.45, 2002),
-(6005, 5001, '3/23/2023', '19:45:14', 999, 'Late-night snack', 1610.29, 2004);
+(6001, '5/19/2023', '13:30:23', 5, 'Bananas', 8.06, 2001),
+(6002, '1/12/2022', '05:12:01', 35, 'Milk', 75.33, 2003),
+(6003, '1/12/2022', '05:13:54', 19, 'Apple', 122.19, 2003),
+(6004, '5/17/2023', '03:16:03', 2, 'White Bread', 3.45, 2002),
+(6005, '3/23/2023', '19:45:14', 999, 'Watermelons', 1610.29, 2004);
 
 insert into StoreLocations VALUES
 (3001, '256 Lame Rd., Fresno, CA', 1001, 5596453453, '8 a.m. - 8 p.m.', 'Grocery Store'),
